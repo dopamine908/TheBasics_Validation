@@ -10,7 +10,25 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <div class="alert alert-info">
+                            <ul>
+                                <li>$errors 變數會是  Illuminate\Support\MessageBag</li>
+                            </ul>
+                            <ul>
+                                <li>$errors 變數透過 web 中介層群組提供的 Illuminate\View\Middleware\ShareErrorsFromSession 中介層綁定到視圖。當應用這個中介層時，視圖中會永遠存在一個可用的 $errors 變數，你可以方便的假設 $errors 變數總是有被定義且可以安全使用。</li>
+                            </ul>
+                        </div>
 
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
