@@ -38,4 +38,14 @@ Route::get('訂製的request', function() {
 });
 Route::post('訂製的request', 'ValidationController@costumizeRequest');
 
+/*
+|--------------------------------------------------------------------------
+| 在controller內建置validate規則及驗證失敗的處理
+|--------------------------------------------------------------------------
+*/
+Route::get('寫validate在controller內', function () {
+    return view('MakeValidateInController');
+});
+Route::post('寫validate在controller內', 'ValidationController@makeValidateInController');
+
 
