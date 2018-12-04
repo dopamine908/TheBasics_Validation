@@ -30,4 +30,19 @@ class CustomizeRequest extends FormRequest
             'int' => 'required|integer' //必填｜只能數字
         ];
     }
+
+    /**
+     * rule驗證完之後的動作可以寫在withValidator內
+     * （為表單請求加上驗證後的掛勾）
+     *
+     * @param \Illuminate\Validation\Validator $validator
+     */
+    public function withValidator($validator) {
+        //如果驗證失敗，則新增一個錯誤訊息
+        if($validator->fails()) {
+            $validator->after(function ($validator) {
+                $validator->errors()->add('field', 'Something is wrong with this field!');
+            });
+        };
+    }
 }
