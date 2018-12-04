@@ -28,3 +28,14 @@ Route::get('在controller做validation', 'ValidationController@validateInControl
 Route::get('對傳遞的變數為array時做validate', 'ValidationController@validateArrayInController');
 
 
+/*
+|--------------------------------------------------------------------------
+| 自定義request 撰寫客製化的validation規則
+|--------------------------------------------------------------------------
+*/
+Route::get('訂製的request', function() {
+    return view('CustumizeRequestForm');
+});
+Route::post('訂製的request', 'ValidationController@costumizeRequest');
+
+

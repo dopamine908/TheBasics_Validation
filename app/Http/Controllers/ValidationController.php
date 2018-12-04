@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CustomizeRequest;
 
 class ValidationController extends Controller
 {
@@ -29,5 +30,14 @@ class ValidationController extends Controller
             'array.index2' => 'required'
         ]);
         dump($validate);
+    }
+
+    /**
+     * 訂製的request post接的function
+     * 會先經過CustomizeRequest的驗證
+     * @param CustomizeRequest $customizeRequest
+     */
+    public function costumizeRequest(CustomizeRequest $customizeRequest) {
+
     }
 }
