@@ -51,4 +51,19 @@ class CustomizeRequest extends FormRequest
             });
         };
     }
+
+    /**
+     * 取得已定義驗證規則的錯誤訊息。
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => '此欄位必填',
+            'name.max' => '不能超過五個字',
+            'int.required' => '此欄位必填',
+            'int.integer' => '要填數字'
+        ];
+    }
 }
