@@ -54,6 +54,9 @@
                                     </button>
                                 </div>
                             </div>
+                            {{ $errors->MessageBagName->first('name') }}
+                            <br>
+                            {{ $errors->MessageBagName->first('int') }}
                         </form>
                     </div>
                 </div>

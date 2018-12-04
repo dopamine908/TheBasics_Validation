@@ -57,10 +57,17 @@ class ValidationController extends Controller
         ]);
 
         //驗證失敗執行的動作
+//        if ($validator->fails()) {
+//            return redirect('寫validate在controller內') //重新導向
+//                ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
+//                ->withInput();
+//        }
+
+        //驗證失敗執行的動作
         if ($validator->fails()) {
             return redirect('寫validate在controller內') //重新導向
-                ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
-                ->withInput();
+            ->withErrors($validator, 'MessageBagName') //將錯誤訊息帶至redirect的目的地（存在session）
+            ->withInput();
         }
 
         //也可以直接這樣寫，會重導到預設的route(表單提交頁)
