@@ -38,6 +38,6 @@ class ValidationController extends Controller
      * @param CustomizeRequest $customizeRequest
      */
     public function costumizeRequest(CustomizeRequest $customizeRequest) {
-
+        dump('CustomizeRequest 驗證成功');
     }
 }

@@ -8,13 +8,19 @@ class CustomizeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     * 判斷使用者是否有權限做出此請求。
+     * 錯誤回傳403
      *
      * @return bool
      */
     public function authorize()
     {
         //若沒有寫身份驗證或是其他的驗證規則的話要設定true(預設false)
-        return true;
+        if(true) { //可以寫一些權限方面的驗證
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
