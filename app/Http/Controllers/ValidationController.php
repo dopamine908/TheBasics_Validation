@@ -64,17 +64,28 @@ class ValidationController extends Controller
 //        }
 
         //驗證失敗執行的動作
-        if ($validator->fails()) {
-            return redirect('寫validate在controller內') //重新導向
-            ->withErrors($validator, 'MessageBagName') //將錯誤訊息帶至redirect的目的地（存在session）
-            ->withInput();
-        }
+//        if ($validator->fails()) {
+//            return redirect('寫validate在controller內') //重新導向
+//            ->withErrors($validator, 'MessageBagName') //將錯誤訊息帶至redirect的目的地（存在session）
+//            ->withInput();
+//        }
 
         //也可以直接這樣寫，會重導到預設的route(表單提交頁)
 //        $validator = Validator::make($request->all(), [
 //            'name' => 'required|max:5', //必填｜最多五個字
 //            'int' => 'required|integer' //必填｜只能數字
 //        ])->validate();
+
+        //驗證後的動作掛鉤
+        $validator->after(function ($validator) { //施驗後要做的事情
+            $validator->errors()->add('field', 'Something is wrong with this field!');
+        });
+        
+        if ($validator->fails()) { //如果驗證結果失敗
+            return redirect('寫validate在controller內') //重新導向
+                ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
+                ->withInput();
+        }
 
     }
 }
