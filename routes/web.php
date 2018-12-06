@@ -60,4 +60,14 @@ Route::get('自訂錯誤訊息or修改預設訊息', function () {
 });
 Route::post('自訂錯誤訊息or修改預設訊息', 'ValidationController@costumizeErrorMessage');
 
+/*
+|--------------------------------------------------------------------------
+| 依條件增加驗證的規則
+|--------------------------------------------------------------------------
+*/
+Route::get('依條件增加規則', function () {
+    return view('ConditionallyAddingRules');
+});
+Route::post('依條件增加規則', 'ValidationController@addingRulesConditionally');
+
 

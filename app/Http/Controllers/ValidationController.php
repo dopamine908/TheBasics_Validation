@@ -120,4 +120,27 @@ class ValidationController extends Controller
             ->withInput();
         }
     }
+
+    /**
+     * 依條件增加規則
+     *
+     * @param Request $request
+     * @return $this
+     */
+    public function addingRulesConditionally(Request $request) {
+        //若有額外輸入
+        $add_request = array_merge($request->all(), ['add_sting' => 'qwertyyuuii']);
+        //原始request
+        $request = $request->all();
+        $validator = Validator::make(/*$request*/ $add_request, [
+            'name' => 'required|max:5', //必填｜最多五個字
+            'int' => 'required|integer', //必填｜只能數字
+            'add_sting' => 'sometimes|required|max:7' //sometimes只有在有輸入的時候才會作用
+        ]);
+        if ($validator->fails()) { //如果驗證結果失敗
+            return redirect('依條件增加規則') //重新導向
+            ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
+            ->withInput();
+        }
+    }
 }
