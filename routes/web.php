@@ -48,4 +48,16 @@ Route::get('寫validate在controller內', function () {
 });
 Route::post('寫validate在controller內', 'ValidationController@makeValidateInController');
 
+/*
+|--------------------------------------------------------------------------
+| 自訂錯誤訊息or修改預設訊息
+|--------------------------------------------------------------------------
+在語系檔中指定自訂訊息
+在語系檔中指定自訂屬性
+*/
+Route::get('自訂錯誤訊息or修改預設訊息', function () {
+    return view('costumizeErrorMessage');
+});
+Route::post('自訂錯誤訊息or修改預設訊息', 'ValidationController@costumizeErrorMessage');
+
 

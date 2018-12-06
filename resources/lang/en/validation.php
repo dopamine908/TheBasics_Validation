@@ -130,6 +130,14 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'name' => [
+            'required' => '需要！',
+        ],
+
+        'int' => [
+            'required' => '需要！'
+        ]
     ],
 
     /*
@@ -143,6 +151,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'int' => '數字欄位',
+        'name' => '名字欄位'
+    ],
 
 ];

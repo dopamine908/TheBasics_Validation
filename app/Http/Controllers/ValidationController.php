@@ -80,12 +80,44 @@ class ValidationController extends Controller
         $validator->after(function ($validator) { //施驗後要做的事情
             $validator->errors()->add('field', 'Something is wrong with this field!');
         });
-        
+
         if ($validator->fails()) { //如果驗證結果失敗
             return redirect('寫validate在controller內') //重新導向
                 ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
                 ->withInput();
         }
 
+    }
+
+    /**
+     * 自訂錯誤訊息or修改預設訊息
+     *
+     * @param Request $request
+     * @return $this
+     */
+    public function costumizeErrorMessage(Request $request) {
+        $input = $request->all();
+        $rules = [ //規則
+            'name' => 'required|max:5', //必填｜最多五個字
+            'int' => 'required|integer' //必填｜只能數字
+        ];
+        $messages = [ // 訊息
+//            'name.required' => '此欄位必填', //被validation.php內的設定覆蓋
+            'name.max' => ':attribute 不能超過五個字',
+//            'int.required' => '此欄位必填', //被validation.php內的設定覆蓋
+            'int.integer' => ':attribute 要填數字',
+
+            'attributes' => [
+                'int' => '數字欄位',
+                'name' => '名字欄位'
+            ],
+
+        ];
+        $validator = Validator::make($input, $rules, $messages);
+        if ($validator->fails()) { //如果驗證結果失敗
+            return redirect('自訂錯誤訊息or修改預設訊息') //重新導向
+            ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
+            ->withInput();
+        }
     }
 }
