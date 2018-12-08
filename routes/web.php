@@ -70,4 +70,14 @@ Route::get('依條件增加規則', function () {
 });
 Route::post('依條件增加規則', 'ValidationController@addingRulesConditionally');
 
+/*
+|--------------------------------------------------------------------------
+| 可以對驗證增加複雜的驗證規則（不只是格式類的）
+|--------------------------------------------------------------------------
+*/
+Route::get('較為複雜的驗證規則',function () {
+    return view('ComplexValidatorRule');
+});
+Route::post('較為複雜的驗證規則', 'ValidationController@complexValidatorRule');
+
 

@@ -143,4 +143,29 @@ class ValidationController extends Controller
             ->withInput();
         }
     }
+
+    /**
+     * 可以寫較複雜的驗證規則
+     * 例如去資料去看看有沒有某資料在確定他會不會過之類的
+     *
+     * @param Request $request
+     * @return $this
+     */
+    public function complexValidatorRule(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:5', //必填｜最多五個字
+            'int' => 'required|integer' //必填｜只能數字
+        ]);
+
+        $validator = $validator->sometimes('complex', 'required', function($input) {
+            //可在裡面寫更複雜的規則
+            return $input->int>100;
+        });
+
+        if ($validator->fails()) { //如果驗證結果失敗
+            return redirect('較為複雜的驗證規則') //重新導向
+            ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
+            ->withInput();
+        }
+    }
 }
