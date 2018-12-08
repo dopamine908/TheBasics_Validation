@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\CustomizeRequest;
+use App\Rules\CustumorRule;
 
 class ValidationController extends Controller
 {
@@ -167,5 +168,11 @@ class ValidationController extends Controller
             ->withErrors($validator) //將錯誤訊息帶至redirect的目的地（存在session）
             ->withInput();
         }
+    }
+
+    public function makeRule(Request $request) {
+        $request->validate([
+            'even_number' => ['required', new CustumorRule()]
+        ]);
     }
 }

@@ -80,4 +80,15 @@ Route::get('較為複雜的驗證規則',function () {
 });
 Route::post('較為複雜的驗證規則', 'ValidationController@complexValidatorRule');
 
+/*
+|--------------------------------------------------------------------------
+| 自己寫特殊驗證規則
+|--------------------------------------------------------------------------
+php artisan make:rule
+*/
+Route::get('自己寫rule', function () {
+    return view('makeRule');
+});
+Route::post('自己寫rule', 'ValidationController@makeRule');
+
 
